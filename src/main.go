@@ -19,8 +19,13 @@ type Director struct {
 	Lastname  string `json:"lastname"`
 }
 
+var movies []Movie
+
 func main() {
 	r := mux.NewRouter()
+
+	movies = append(movies, Movie{"1", "438227", "Movie One", &Director{"John", "Doe"}})
+	movies = append(movies, Movie{"2", "45455", "Movie Two", &Director{"Steve", "Smith"}})
 
 	r.HandleFunc("/movies", getMovies).Methods("GET")
 	r.HandleFunc("/movies/{id}", getMovie).Methods("GET")
